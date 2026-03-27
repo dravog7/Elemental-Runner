@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3 uid="uid://mobile_ui"]
+
+[ext_resource type="Script" path="res://Scripts/UI/MobileControls.gd" id="1_mob"]
+
+[node name="MobileControls" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_mob")
+
+[node name="LeftBase" type="ColorRect" parent="."]
+offset_right = 200.0
+offset_bottom = 200.0
+color = Color(1, 1, 1, 0.2)
+
+[node name="LeftKnob" type="ColorRect" parent="."]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(1, 1, 1, 0.5)
+
+[node name="RightBase" type="ColorRect" parent="."]
+offset_right = 200.0
+offset_bottom = 200.0
+color = Color(1, 1, 1, 0.2)
+
+[node name="RightKnob" type="ColorRect" parent="."]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(1, 1, 1, 0.5)
+
+[node name="ElementButtons" type="HBoxContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -250.0
+offset_right = -20.0
+offset_bottom = -150.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 2
+theme_override_constants/separation = 20
+
+[node name="FireBtn" type="Button" parent="ElementButtons"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "FIRE"
+
+[node name="WaterBtn" type="Button" parent="ElementButtons"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+text = "WATER"
+
+[node name="IceBtn" type="Button" parent="ElementButtons"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 1, 1)
+text = "ICE"

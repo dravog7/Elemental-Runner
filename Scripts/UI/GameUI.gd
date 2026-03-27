@@ -11,6 +11,21 @@ extends CanvasLayer
 var local_player: Node2D
 var remote_player: Node2D
 
+func _ready():
+	apply_safe_area()
+
+func apply_safe_area():
+	var safe_area = DisplayServer.get_display_safe_area()
+	var window_size = DisplayServer.window_get_size()
+	if safe_area != Rect2i() and window_size != Vector2i():
+		var viewport_size = get_viewport().get_visible_rect().size
+		var scale_ratio = viewport_size / Vector2(window_size)
+		var margin = get_node("MarginContainer")
+		margin.add_theme_constant_override("margin_top", safe_area.position.y * scale_ratio.y + 20)
+		margin.add_theme_constant_override("margin_left", safe_area.position.x * scale_ratio.x + 20)
+		margin.add_theme_constant_override("margin_right", (window_size.x - safe_area.end.x) * scale_ratio.x + 20)
+		margin.add_theme_constant_override("margin_bottom", (window_size.y - safe_area.end.y) * scale_ratio.y + 20)
+
 func _process(_delta):
 	var players_node = get_node_or_null("/root/Main/Players")
 	if not players_node: return
