@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://treas_uid"]
+
+[ext_resource type="Script" path="res://Scripts/Core/Treasure.gd" id="1_tres"]
+[ext_resource type="Texture2D" path="res://assets/treasure.png" id="2_tres_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3"]
+size = Vector2(64, 64)
+
+[node name="Treasure" type="Area2D"]
+script = ExtResource("1_tres")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tres_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3")

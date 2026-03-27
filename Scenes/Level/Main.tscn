@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://main_uid"]
+
+[ext_resource type="Script" path="res://Scripts/Core/MainGame.gd" id="1_maingame"]
+[ext_resource type="Script" path="res://Scripts/Level/LevelGenerator.gd" id="2_levelgen"]
+[ext_resource type="PackedScene" path="res://Scenes/Player/Player.tscn" id="3_player"]
+[ext_resource type="TileSet" uid="uid://c6xxjyx8r8wxy" path="res://Scenes/Level/tileset.tres" id="4_tileset"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_maingame")
+player_scene = ExtResource("3_player")
+
+[node name="LevelGenerator" type="Node2D" parent="."]
+script = ExtResource("2_levelgen")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = ExtResource("4_tileset")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Scenes/Player/Player.tscn")
+spawn_path = NodePath("../Players")
+
+[node name="Players" type="Node2D" parent="."]

@@ -1,0 +1,51 @@
+[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://c6xxjyx8r8wxy"]
+
+[ext_resource type="Texture2D" path="res://assets/tile_floor.png" id="1_floor"]
+[ext_resource type="Texture2D" path="res://assets/tile_wall.png" id="2_wall"]
+[ext_resource type="Texture2D" path="res://assets/tile_river.png" id="3_river"]
+[ext_resource type="Texture2D" path="res://assets/tile_river_frozen.png" id="4_iceriver"]
+[ext_resource type="Texture2D" path="res://assets/tile_plant.png" id="5_plant"]
+[ext_resource type="Texture2D" path="res://assets/tile_plant_burned.png" id="6_ash"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_floor"]
+texture = ExtResource("1_floor")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wall"]
+texture = ExtResource("2_wall")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_river"]
+texture = ExtResource("3_river")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iceriver"]
+texture = ExtResource("4_iceriver")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_plant"]
+texture = ExtResource("5_plant")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ash"]
+texture = ExtResource("6_ash")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[resource]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_floor")
+sources/1 = SubResource("TileSetAtlasSource_wall")
+sources/2 = SubResource("TileSetAtlasSource_river")
+sources/3 = SubResource("TileSetAtlasSource_iceriver")
+sources/4 = SubResource("TileSetAtlasSource_plant")
+sources/5 = SubResource("TileSetAtlasSource_ash")
