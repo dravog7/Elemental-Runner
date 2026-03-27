@@ -5,6 +5,9 @@ class_name PlayerController
 @export var max_health: int = 100
 @export var projectile_scene: PackedScene
 
+signal health_changed(new_health: int)
+signal status_changed(new_status: int)
+
 var current_health: int
 var current_status: int = ElementRegistry.ElementStatus.Normal
 var status_timer: float = 0.0
@@ -124,6 +127,7 @@ func handle_element_hit(incoming_element: int, base_damage: int):
 	var final_damage = round(base_damage * reaction.damage_multiplier)
 	
 	current_health -= final_damage
+	health_changed.emit(current_health)
 	ERLogger.info("Player %s took %d damage. HP: %d" % [name, final_damage, current_health])
 	
 	if reaction.new_status != current_status:
@@ -136,6 +140,7 @@ func handle_element_hit(incoming_element: int, base_damage: int):
 @rpc("any_peer", "call_local")
 func apply_status(status_int: int, duration: float):
 	current_status = status_int
+	status_changed.emit(current_status)
 	if duration > 0: status_timer = duration
 	
 	var sprite = get_node_or_null("Sprite2D")
@@ -149,6 +154,7 @@ func apply_status(status_int: int, duration: float):
 @rpc("any_peer", "call_local")
 func clear_status():
 	current_status = ElementRegistry.ElementStatus.Normal
+	status_changed.emit(current_status)
 	var sprite = get_node_or_null("Sprite2D")
 	if sprite: sprite.modulate = Color.WHITE
 

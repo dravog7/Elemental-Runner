@@ -39,18 +39,8 @@ func _on_body_entered(body: Node2D):
         if current_tile != -1:
             var new_tile = TileRegistry.get_tile_reaction(element, current_tile)
             if new_tile != current_tile:
-                tilemap.set_cell(map_pos, new_tile, Vector2i(0, 0))
-                
-                # Setup delayed reactions like fire turning plant to ash, then ash to floor
-                if new_tile == TileRegistry.TileType.Ash:
-                    tilemap.get_tree().create_timer(3.0).timeout.connect(func():
-                        if is_instance_valid(tilemap) and tilemap.get_cell_source_id(map_pos) == TileRegistry.TileType.Ash:
-                            tilemap.set_cell(map_pos, TileRegistry.TileType.Floor, Vector2i(0, 0))
-                    )
-                elif new_tile == TileRegistry.TileType.IceRiver:
-                    tilemap.get_tree().create_timer(4.0).timeout.connect(func():
-                        if is_instance_valid(tilemap) and tilemap.get_cell_source_id(map_pos) == TileRegistry.TileType.IceRiver:
-                            tilemap.set_cell(map_pos, TileRegistry.TileType.River, Vector2i(0, 0))
-                    )
+                var main = get_node_or_null("/root/Main")
+                if main and owner_id == NetworkManager.network_interface.get_unique_id():
+                    main.rpc("request_tile_change", map_pos, new_tile)
                     
         queue_free()

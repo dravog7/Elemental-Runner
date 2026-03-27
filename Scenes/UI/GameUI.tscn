@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=3 uid="uid://game_ui"]
+
+[ext_resource type="Script" path="res://Scripts/UI/GameUI.gd" id="1_gui"]
+
+[node name="GameUI" type="CanvasLayer"]
+script = ExtResource("1_gui")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Player1Box" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NameLabel" type="Label" parent="MarginContainer/HBoxContainer/Player1Box"]
+layout_mode = 2
+text = "Waiting for Host..."
+
+[node name="HPBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/Player1Box"]
+layout_mode = 2
+value = 100.0
+
+[node name="StatusLabel" type="Label" parent="MarginContainer/HBoxContainer/Player1Box"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Normal"
+
+[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Player2Box" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NameLabel" type="Label" parent="MarginContainer/HBoxContainer/Player2Box"]
+layout_mode = 2
+horizontal_alignment = 2
+text = "Waiting for Guest..."
+
+[node name="HPBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/Player2Box"]
+layout_mode = 2
+value = 100.0
+fill_mode = 1
+
+[node name="StatusLabel" type="Label" parent="MarginContainer/HBoxContainer/Player2Box"]
+layout_mode = 2
+horizontal_alignment = 2
+text = "Normal"

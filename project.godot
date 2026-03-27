@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 NetworkManager="*res://Scripts/Networking/NetworkManager.gd"
 GameManager="*res://Scripts/Core/GameManager.gd"
+ServerBrowser="*res://Scripts/Networking/ServerBrowser.gd"
 
 [dotnet]
 

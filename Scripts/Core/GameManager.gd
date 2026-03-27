@@ -1,6 +1,7 @@
 extends Node
 
 signal player_won(peer_id: int)
+var disconnect_reason: String = ""
 
 @rpc("any_peer", "call_local")
 func on_player_reached_treasure(peer_id: int):
@@ -20,7 +21,7 @@ func on_player_died(dead_peer_id: int):
 	var winner_id = 0 if local_id == dead_peer_id else local_id
 	end_game(winner_id)
 
-func end_game(winner_id: int):
+func end_game(_winner_id: int):
 	ERLogger.info("Game Over. Disconnecting in 3 seconds...")
 	await get_tree().create_timer(3.0).timeout
 	NetworkManager.network_interface.disconnect_peer()
