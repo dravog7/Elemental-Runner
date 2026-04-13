@@ -19,6 +19,7 @@ func _enter_tree():
 		set_multiplayer_authority(peer_id)
 
 func _ready():
+	add_to_group("player")
 	var peer_id: int = name.to_int()
 	ERLogger.debug("PlayerController _ready() mapping for Peer ID: " + str(peer_id))
 	
@@ -102,6 +103,14 @@ func shoot(elem: int):
 	var mouse_pos = get_global_mouse_position()
 	var shoot_dir = (mouse_pos - global_position).normalized()
 	rpc("spawn_projectile", elem, shoot_dir)
+
+func set_active_element(elem: int):
+	if is_multiplayer_authority():
+		active_element = elem
+
+func shoot_from_virtual(aim_dir: Vector2):
+	if is_multiplayer_authority():
+		rpc("spawn_projectile", active_element, aim_dir)
 
 @rpc("any_peer", "call_local")
 func spawn_projectile(elem: int, shoot_dir: Vector2):

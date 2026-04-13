@@ -16,6 +16,9 @@ func _ready():
 	var ui_scene = preload("res://Scenes/UI/GameUI.tscn")
 	add_child(ui_scene.instantiate())
 	
+	var mob_scene = preload("res://Scenes/UI/MobileControls.tscn")
+	add_child(mob_scene.instantiate())
+	
 	NetworkManager.network_interface.server_disconnected.connect(func():
 		GameManager.disconnect_reason = "Server Disconnected!"
 		get_tree().change_scene_to_file("res://Scenes/UI/Lobby.tscn")
